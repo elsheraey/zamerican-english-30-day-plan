@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رحلتك في ٣٠ يوم — المستوى التاني</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap');
+
+        :root {
+            --primary: #6C5CE7;
+            --primary-light: #A29BFE;
+            --primary-dark: #5A4BD1;
+            --accent: #FD79A8;
+            --accent-light: #FDCB6E;
+            --success: #00B894;
+            --warning: #E17055;
+            --bg: #0F0F1A;
+            --bg-card: #1A1A2E;
+            --bg-card-hover: #222240;
+            --text: #E8E8F0;
+            --text-muted: #9090A8;
+            --border: #2A2A45;
+            --gradient-1: linear-gradient(135deg, #6C5CE7, #A29BFE);
+            --gradient-2: linear-gradient(135deg, #FD79A8, #FDCB6E);
+            --gradient-3: linear-gradient(135deg, #00B894, #55EFC4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(108, 92, 231, 0.15), transparent 70%);
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(253, 121, 168, 0.1), transparent 70%);
+            bottom: -50px;
+            left: -50px;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .stat-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .stat-badge .number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-badge .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Scroll indicator */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Letter Section */
+        .letter {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 4rem auto;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .letter::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 30px;
+            font-size: 6rem;
+            color: var(--primary);
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .letter p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .letter .signature {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Routine Card */
+        .routine-section {
+            margin: 4rem auto;
+            max-width: 800px;
+        }
+
+        .routine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .routine-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .routine-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .routine-card .time-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .routine-card h4 {
+            color: var(--primary-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .routine-card .duration {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .routine-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Playlists Section */
+        .playlists-section {
+            margin: 4rem auto;
+            max-width: 800px;
+        }
+
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            transition: border-color 0.3s, transform 0.2s;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .playlist-item:hover {
+            border-color: var(--primary);
+            transform: translateX(-4px);
+        }
+
+        .playlist-num {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .playlist-info {
+            flex: 1;
+        }
+
+        .playlist-info .name {
+            font-weight: 700;
+        }
+
+        .playlist-info .count {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .playlist-arrow {
+            color: var(--primary-light);
+            font-size: 1.2rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 6rem 0 3rem;
+        }
+
+        .section-header .week-badge {
+            display: inline-block;
+            background: var(--gradient-1);
+            padding: 0.4rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header .section-quote {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Day Cards */
+        .day-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: border-color 0.3s;
+        }
+
+        .day-card:hover {
+            border-color: var(--primary-dark);
+        }
+
+        .day-card.review-day {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(253, 121, 168, 0.05), var(--bg-card));
+        }
+
+        .day-card.final-day {
+            border-color: var(--success);
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.05), var(--bg-card));
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .day-number {
+            width: 52px;
+            height: 52px;
+            background: var(--gradient-1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .review-day .day-number {
+            background: var(--gradient-2);
+        }
+
+        .final-day .day-number {
+            background: var(--gradient-3);
+        }
+
+        .day-title h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .day-title .day-subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .day-narrative {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        /* Video List */
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(108, 92, 231, 0.08);
+            border: 1px solid rgba(108, 92, 231, 0.15);
+            border-radius: 12px;
+            padding: 0.85rem 1.2rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .video-item:hover {
+            background: rgba(108, 92, 231, 0.15);
+            border-color: var(--primary);
+            transform: translateX(-4px);
+        }
+
+        .video-item .course-tag {
+            background: var(--gradient-1);
+            padding: 0.2rem 0.7rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .video-item .course-tag.grammar { background: linear-gradient(135deg, #6C5CE7, #A29BFE); }
+        .video-item .course-tag.think { background: linear-gradient(135deg, #00CEC9, #81ECEC); color: #0F0F1A; }
+        .video-item .course-tag.phonetics { background: linear-gradient(135deg, #E17055, #FAB1A0); }
+        .video-item .course-tag.conversation { background: linear-gradient(135deg, #FD79A8, #FDCB6E); color: #0F0F1A; }
+        .video-item .course-tag.western { background: linear-gradient(135deg, #0984E3, #74B9FF); }
+        .video-item .course-tag.stories { background: linear-gradient(135deg, #00B894, #55EFC4); color: #0F0F1A; }
+        .video-item .course-tag.listening { background: linear-gradient(135deg, #6C5CE7, #FD79A8); }
+        .video-item .course-tag.news { background: linear-gradient(135deg, #D63031, #FF7675); }
+        .video-item .course-tag.tip { background: linear-gradient(135deg, #636E72, #B2BEC3); color: #0F0F1A; }
+
+        .video-item .video-title {
+            flex: 1;
+            font-size: 0.95rem;
+        }
+
+        .video-item .play-btn {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.3s;
+        }
+
+        .video-item:hover .play-btn {
+            background: var(--accent);
+        }
+
+        .play-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: white;
+            margin-right: -2px;
+        }
+
+        /* Action Item */
+        .action-item {
+            background: linear-gradient(135deg, rgba(253, 121, 168, 0.1), rgba(253, 203, 110, 0.05));
+            border: 1px solid rgba(253, 121, 168, 0.2);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .action-item .action-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .action-item .action-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .action-item .action-text strong {
+            color: var(--accent);
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: rgba(108, 92, 231, 0.06);
+            border-radius: 10px;
+        }
+
+        .checklist li .check-box {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--primary-light);
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-top: 0.3rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checklist li .check-box.checked {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .checklist li .check-box.checked::after {
+            content: '✓';
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+
+        .checklist li a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .checklist li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Week Summary */
+        .week-summary {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(108, 92, 231, 0.05));
+            border: 1px solid rgba(0, 184, 148, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin: 2rem 0 4rem;
+        }
+
+        .week-summary h4 {
+            color: var(--success);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .week-summary .progress-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .progress-tag {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .progress-tag.done {
+            background: rgba(0, 184, 148, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .progress-tag.in-progress {
+            background: rgba(108, 92, 231, 0.15);
+            color: var(--primary-light);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+        }
+
+        /* Final Scorecard */
+        .scorecard {
+            margin: 4rem auto;
+            max-width: 800px;
+        }
+
+        .scorecard-grid {
+            display: grid;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .scorecard-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+        }
+
+        .scorecard-row .course-name {
+            font-weight: 600;
+        }
+
+        .scorecard-row .score {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .scorecard-row .score-num {
+            font-weight: 800;
+            color: var(--success);
+        }
+
+        .scorecard-row .score-bar {
+            width: 80px;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .scorecard-row .score-bar-fill {
+            height: 100%;
+            background: var(--gradient-3);
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .scorecard-total {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.15), rgba(108, 92, 231, 0.1));
+            border: 2px solid var(--success);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin-top: 1rem;
+        }
+
+        .scorecard-total .total-label {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .scorecard-total .total-num {
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Next Steps */
+        .next-steps {
+            margin: 4rem auto;
+            max-width: 800px;
+        }
+
+        .next-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .next-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .next-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .next-card .next-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .next-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .next-card p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Closing Letter */
+        .closing {
+            text-align: center;
+            margin: 6rem auto 4rem;
+            max-width: 700px;
+            padding: 0 1.5rem;
+        }
+
+        .closing h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .closing p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+
+        .closing .cta {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--success);
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .app-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .app-btn {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: border-color 0.3s;
+        }
+
+        .app-btn:hover {
+            border-color: var(--primary);
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 3rem auto;
+            max-width: 600px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            flex-shrink: 0;
+            margin-top: 0.5rem;
+            position: relative;
+        }
+
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background: var(--border);
+            top: 20px;
+            right: 7px;
+        }
+
+        .timeline-item:last-child .timeline-dot::after {
+            display: none;
+        }
+
+        .timeline-item:nth-child(2) .timeline-dot { background: var(--accent); }
+        .timeline-item:nth-child(3) .timeline-dot { background: var(--accent-light); }
+        .timeline-item:nth-child(4) .timeline-dot { background: var(--success); }
+
+        .timeline-content h4 {
+            font-size: 1rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero .stats-row { gap: 1rem; }
+            .stat-badge { min-width: 90px; padding: 0.75rem 1rem; }
+            .letter { padding: 2rem 1.5rem; }
+            .day-card { padding: 1.5rem; }
+            .video-item { flex-wrap: wrap; }
+            .video-item .course-tag { font-size: 0.7rem; }
+            .scorecard-row { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>رحلتك في ٣٠ يوم</h1>
+        <p class="subtitle">المستوى التاني في الإنجليزي — دليلك الشخصي عشان تطوري إنجليزك، يوم بيوم</p>
+        <div class="stats-row">
+            <div class="stat-badge">
+                <div class="number">٦٣</div>
+                <div class="label">فيديو</div>
+            </div>
+            <div class="stat-badge">
+                <div class="number">٣٠</div>
+                <div class="label">يوم</div>
+            </div>
+            <div class="stat-badge">
+                <div class="number">٨</div>
+                <div class="label">كورسات</div>
+            </div>
+            <div class="stat-badge">
+                <div class="number">٠</div>
+                <div class="label">أعذار</div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-hint">⬇ ابدأي من هنا</div>
+</section>
+
+<!-- LETTER -->
+<div class="container">
+    <div class="letter">
+        <p>أهلاً بيكي،</p>
+        <p>إنتي خلصتي المستوى الأول. تعرفي الحروف، القواعد الأساسية، وعندك مفردات كويسة. الجزء ده خلاص وراكي.</p>
+        <p>الصفحة دي هي الـ ٣٠ يوم الجايين. مش اقتراح — ده التزام. كل يوم فيه مهمة واضحة: شوفي الفيديوهات، خلصي الدوولينجو بتاعك، وارجعي تاني يوم. مفيش تأجيل. مفيش "هعوض بكره." شغل النهارده بتاع النهارده.</p>
+        <p>في اليوم الـ ٣٠، هتفكري بالإنجليزي. هتسمعي إنجليزي وتفهميه. هتتكلمي والناس هتفهمك.</p>
+        <p class="signature">يلا نبدأ ⚡</p>
+    </div>
+
+    <!-- ROUTINE -->
+    <div class="routine-section">
+        <h2 style="text-align:center; margin-bottom:0.5rem;">الروتين اليومي</h2>
+        <p style="text-align:center; color:var(--text-muted); margin-bottom:1.5rem;">إجمالي كل يوم: ساعة تقريباً. كده وبس.</p>
+        <div class="routine-grid">
+            <div class="routine-card">
+                <div class="time-icon">🌅</div>
+                <h4>الصبح</h4>
+                <div class="duration">١٥ دقيقة</div>
+                <p>درس دوولينجو أول ما تصحي</p>
+            </div>
+            <div class="routine-card">
+                <div class="time-icon">☀️</div>
+                <h4>بعد الضهر</h4>
+                <div class="duration">٣٠-٤٥ دقيقة</div>
+                <p>فيديوهات ZAmericanEnglish</p>
+            </div>
+            <div class="routine-card">
+                <div class="time-icon">🌙</div>
+                <h4>بالليل</h4>
+                <div class="duration">١٠-١٥ دقيقة</div>
+                <p>مراجعة دوولينجو + قصص</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PLAYLISTS -->
+    <div class="playlists-section">
+        <h2 style="text-align:center; margin-bottom:1.5rem;">قوائم التشغيل — احفظيهم دلوقتي</h2>
+        <a class="playlist-item" href="https://www.youtube.com/playlist?list=PLp22-4PivYmLrOU3QTrnsogoRZGFmHnGk" target="_blank">
+            <div class="playlist-num">١</div>
+            <div class="playlist-info"><div class="name">القواعد — المستوى التاني</div><div class="count">٧ فيديوهات</div></div>
+            <div class="playlist-arrow">←</div>
+        </a>
+        <a class="playlist-item" href="https://www.youtube.com/playlist?list=PLp22-4PivYmIlFAg2fuo--xVxScz9_6h2" target="_blank">
+            <div class="playlist-num">٢</div>
+            <div class="playlist-info"><div class="name">الصوتيات — المستوى التاني</div><div class="count">٥ فيديوهات</div></div>
+            <div class="playlist-arrow">←</div>
+        </a>
+        <a class="playlist-item" href="https://www.youtube.com/playlist?list=PLp22-4PivYmIsGY5eUPt67tnd2ZBfQpIw" target="_blank">
+            <div class="playlist-num">٣</div>
+            <div class="playlist-info"><div class="name">التفكير بالإنجليزية</div><div class="count">٩ فيديوهات</div></div>
+            <div class="playlist-arrow">←</div>
+        </a>
+        <a class="playlist-item" href="https://www.youtube.com/playlist?list=PLp22-4PivYmJl_sWnCTwL1yNFhq0AM7yk" target="_blank">
+            <div class="playlist-num">٤</div>
+            <div class="playlist-info"><div class="name">المحادثة — المستوى التاني</div><div class="count">٩ فيديوهات</div></div>
+            <div class="playlist-arrow">←</div>
+        </a>
+        <a class="playlist-item" href="https://www.youtube.com/playlist?list=PLp22-4PivYmIgc6vCBbX4aLOiQ6oCoyvN" target="_blank">
+            <div class="playlist-num">٥</div>
+            <div class="playlist-info"><div class="name">تعلم كما يتعلمها الغرب</div><div class="count">١١ فيديو</div></div>
+            <div class="playlist-arrow">←</div>
+        </a>
+        <a class="playlist-item" href="https://www.youtube.com/playlist?list=PLp22-4PivYmLmnv85IWWhNL4PtzcqC5mS" target="_blank">
+            <div class="playlist-num">٦</div>
+            <div class="playlist-info"><div class="name">الاستماع — المستوى التاني</div><div class="count">٥ فيديوهات</div></div>
+            <div class="playlist-arrow">←</div>
+        </a>
+        <a class="playlist-item" href="https://www.youtube.com/playlist?list=PLp22-4PivYmJV4nIwcfSzQpG0jkqn1jci" target="_blank">
+            <div class="playlist-num">٧</div>
+            <div class="playlist-info"><div class="name">قصص — ذا أمريكان ستوري</div><div class="count">١٢ فيديو</div></div>
+            <div class="playlist-arrow">←</div>
+        </a>
+        <a class="playlist-item" href="https://www.youtube.com/playlist?list=PLp22-4PivYmIZtXNNriSBxmSeCK7juwS_" target="_blank">
+            <div class="playlist-num">٨</div>
+            <div class="playlist-info"><div class="name">الأخبار</div><div class="count">٥ فيديوهات</div></div>
+            <div class="playlist-arrow">←</div>
+        </a>
+    </div>
+</div>
+
+<!-- ==================== WEEK 1 ==================== -->
+<div class="container">
+    <div class="section-header">
+        <div class="week-badge">الأسبوع الأول</div>
+        <h2>أساس القواعد</h2>
+        <p class="section-quote">"مينفعش تبني بيت من غير هيكل. القواعد هي الهيكل بتاعك."</p>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">١</div>
+            <div class="day-title"><h3>خط البداية</h3><div class="day-subtitle">النهارده بتبدأي. مش بكره. مش الأسبوع الجاي. دلوقتي.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=BIcGYNDUOJw" target="_blank">
+                <span class="course-tag grammar">القواعد</span>
+                <span class="video-title">Gerund - تحويل الفعل الى اسم</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=xHkDC4Hg1mo" target="_blank">
+                <span class="course-tag think">التفكير</span>
+                <span class="video-title">مقدمة - أهم الكلمات والمصطلحات</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">✏️</span>
+            <div class="action-text"><strong>المطلوب منك:</strong> اكتبي ٣ كلمات جديدة اتعلمتيهم النهارده في كشكول. ده كشكول المفردات بتاعك — هتستخدميه كل يوم.</div>
+        </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">٢</div>
+            <div class="day-title"><h3>بناء العزيمة</h3><div class="day-subtitle">إنتي جيتي إمبارح. دلوقتي تعالي تاني. كده العادات بتتبني.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=TsB89rgEMCc" target="_blank">
+                <span class="course-tag grammar">القواعد</span>
+                <span class="video-title">Infinitive - مصدر الفعل</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=vsnj8-LoStM" target="_blank">
+                <span class="course-tag think">التفكير</span>
+                <span class="video-title">أهم الكلمات والمصطلحات (الحلقة ١)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">💡</span>
+            <div class="action-text"><strong>المطلوب منك:</strong> حاولي تشرحي الفرق بين الـ gerund والـ infinitive لنفسك — بالإنجليزي. لو مقدرتيش لسه، عادي. هتقدري.</div>
+        </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">٣</div>
+            <div class="day-title"><h3>الجزء الصعب</h3><div class="day-subtitle">الفرق بين gerund و infinitive. ده اللي بيلخبط ناس كتير. ركزي كويس.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=hDjEOm6hQro" target="_blank">
+                <span class="course-tag grammar">القواعد</span>
+                <span class="video-title">الفرق بين Gerund و Infinitive</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=NDgJghTf3Vo" target="_blank">
+                <span class="course-tag think">التفكير</span>
+                <span class="video-title">أهم الكلمات والمصطلحات (الحلقة ٢)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">📝</span>
+            <div class="action-text"><strong>المطلوب منك:</strong> اكتبي ٥ جمل — بعضها بـ gerund وبعضها بـ infinitive. اكتبيهم في الكشكول.</div>
+        </div>
+    </div>
+
+    <!-- Day 4 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">٤</div>
+            <div class="day-title"><h3>نتكلم عن الماضي</h3><div class="day-subtitle">"Used to" من العبارات اللي بتخليكي تتكلمي طبيعي.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=Dd8g5ebR-Q8" target="_blank">
+                <span class="course-tag grammar">القواعد</span>
+                <span class="video-title">قاعدة Used to</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=stTrJvGDZBY" target="_blank">
+                <span class="course-tag think">التفكير</span>
+                <span class="video-title">أهم الكلمات والمصطلحات (الحلقة ٣)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">🕰️</span>
+            <div class="action-text"><strong>المطلوب منك:</strong> اكتبي ٣ جمل عن حاجات كنتي بتعمليها وإنتي صغيرة. مثال: "I used to play outside every day."</div>
+        </div>
+    </div>
+
+    <!-- Day 5 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">٥</div>
+            <div class="day-title"><h3>تدي نصيحة</h3><div class="day-subtitle">"had better" و "should" — طريقتين قويين عشان تدي نصيحة بالإنجليزي.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=8SVCdSJMCTQ" target="_blank">
+                <span class="course-tag grammar">القواعد</span>
+                <span class="video-title">Had better و Should</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=N_pGRb3MYKA" target="_blank">
+                <span class="course-tag think">التفكير</span>
+                <span class="video-title">أهم الكلمات والمصطلحات (الحلقة ٤)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">💬</span>
+            <div class="action-text"><strong>المطلوب منك:</strong> ادي نفسك ٣ نصايح بالإنجليزي. مثال: "I should study every day. I had better not skip Duolingo."</div>
+        </div>
+    </div>
+
+    <!-- Day 6 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">٦</div>
+            <div class="day-title"><h3>الدفعة الكبيرة</h3><div class="day-subtitle">٣ فيديوهات النهارده. هنا بتخلصي القواعد. إنتي تقدري.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=zP_m0L2e7d0" target="_blank">
+                <span class="course-tag grammar">القواعد</span>
+                <span class="video-title">Adverb & Adjective - الحال والصفة</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=JFowajfA78U" target="_blank">
+                <span class="course-tag grammar">القواعد</span>
+                <span class="video-title">أنواع الحال ومكانه في الجملة (الأخيرة! 🎉)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=zE8FC1I4_HM" target="_blank">
+                <span class="course-tag think">التفكير</span>
+                <span class="video-title">أهم الكلمات والمصطلحات (الحلقة ٥)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">🎉</span>
+            <div class="action-text"><strong>القواعد المستوى التاني خلصت!</strong> احتفلي — وبعدين اكتبي ٥ جمل فيها adverbs. مثال: "She speaks English fluently."</div>
+        </div>
+    </div>
+
+    <!-- Day 7 - Review -->
+    <div class="day-card review-day">
+        <div class="day-header">
+            <div class="day-number">٧</div>
+            <div class="day-title"><h3>راحة، مراجعة، شحن طاقة</h3><div class="day-subtitle">مفيش فيديوهات جديدة. ده يوم المراجعة بتاعك.</div></div>
+        </div>
+        <ul class="checklist">
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>دوولينجو: ٢ دروس زيادة + اقرأي كل القصص المتاحة</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>شوفي تاني أي حلقة قواعد حسيتي إنها مش واضحة</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>شوفي النصيحة دي: <a href="https://www.youtube.com/watch?v=SsfZO7jP7Is" target="_blank">كيف أتعلم الإنجليزية بسرعة؟ ١٢ خطوة</a></li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>راجعي كشكول المفردات — فاكرة كل كلمة؟</li>
+        </ul>
+    </div>
+
+    <div class="week-summary">
+        <h4>الأسبوع الأول خلص! 🔥</h4>
+        <div class="progress-tags">
+            <span class="progress-tag done">القواعد ٧/٧ ✓</span>
+            <span class="progress-tag in-progress">التفكير ٦/٩</span>
+        </div>
+    </div>
+
+    <!-- ==================== WEEK 2 ==================== -->
+    <div class="section-header">
+        <div class="week-badge">الأسبوع التاني</div>
+        <h2>اتكلمي زي الأجانب</h2>
+        <p class="section-quote">"مش بس إيه اللي بتقوليه — كمان إزاي بتقوليه. الأسبوع ده هنظبط النطق ونبدأ محادثات حقيقية."</p>
+    </div>
+
+    <!-- Day 8 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">٨</div>
+            <div class="day-title"><h3>٣ عوالم جديدة بتتفتح</h3><div class="day-subtitle">الصوتيات، المحادثة، وتعلم كما يتعلمها الغرب. مكثف، بس إنتي جاهزة.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=1CR0Tupf4-0" target="_blank">
+                <span class="course-tag phonetics">الصوتيات</span>
+                <span class="video-title">مقدمة - الصوتيات البريطانية والأمريكية</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=uJl6jg4smtw" target="_blank">
+                <span class="course-tag conversation">المحادثة</span>
+                <span class="video-title">المحادثات اليومية (الحلقة ١)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=d4a3T4dDpSw" target="_blank">
+                <span class="course-tag western">الغرب</span>
+                <span class="video-title">كيف أفكر بالإنجليزي</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">🗣️</span>
+            <div class="action-text"><strong>المطلوب منك:</strong> بعد فيديو المحادثة، وقفي وكرري كل جملة بصوت عالي. متتفرجيش وبس — اتكلمي.</div>
+        </div>
+    </div>
+
+    <!-- Day 9 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">٩</div>
+            <div class="day-title"><h3>بقك عضلة</h3><div class="day-subtitle">النطق حاجة جسدية. تمرني بصوت عالي — حتى لو حسيتي إن الموضوع غريب.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=ftLb3sxHRKg" target="_blank">
+                <span class="course-tag phonetics">الصوتيات</span>
+                <span class="video-title">تحسين النطق (الحلقة ١)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=m8awQmONl5g" target="_blank">
+                <span class="course-tag conversation">المحادثة</span>
+                <span class="video-title">المحادثات اليومية (الحلقة ٢)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=mbzeiuIQKPo" target="_blank">
+                <span class="course-tag western">الغرب</span>
+                <span class="video-title">Learn English with pictures</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">🎙️</span>
+            <div class="action-text"><strong>المطلوب منك:</strong> سجلي نفسك وإنتي بتقولي ٥ كلمات إنجليزي. اسمعي التسجيل. صوتك زي إبراهيم؟ حاولي تاني.</div>
+        </div>
+    </div>
+
+    <!-- Day 10 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">١٠</div>
+            <div class="day-title"><h3>مشكلة الإملاء</h3><div class="day-subtitle">الإملاء في الإنجليزي ساعات مبيكونش منطقي. النهارده هنفك الشفرة.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=SkDJuqqBCMs" target="_blank">
+                <span class="course-tag phonetics">الصوتيات</span>
+                <span class="video-title">حل مشكلة التهجي والنطق (الحلقة ٢)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=owd-5mASxro" target="_blank">
+                <span class="course-tag conversation">المحادثة</span>
+                <span class="video-title">المحادثات اليومية (الحلقة ٣)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=AkxWfSaHofY" target="_blank">
+                <span class="course-tag western">الغرب</span>
+                <span class="video-title">How to use English only episodes</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">🔍</span>
+            <div class="action-text"><strong>المطلوب منك:</strong> لاقي ٥ كلمات إنجليزي الإملاء بتاعها مش زي النطق. اكتبيهم مع النطق الصح جنبهم.</div>
+        </div>
+    </div>
+
+    <!-- Day 11 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">١١</div>
+            <div class="day-title"><h3>كملي دفع</h3><div class="day-subtitle">كل صوت بتتقنيه ده صوت الناس هتفهمه لما تتكلمي.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=qH5OGY9NnRE" target="_blank">
+                <span class="course-tag phonetics">الصوتيات</span>
+                <span class="video-title">حل مشكلة التهجي والنطق (الحلقة ٣)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=QXGJ2Thf_o8" target="_blank">
+                <span class="course-tag conversation">المحادثة</span>
+                <span class="video-title">المحادثات اليومية (الحلقة ٤)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=iB_x5NIqHQo" target="_blank">
+                <span class="course-tag western">الغرب</span>
+                <span class="video-title">Learn with pictures 2</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">🧠</span>
+            <div class="action-text"><strong>المطلوب منك:</strong> اعملي محادثة خيالية بالإنجليزي وإنتي ماشية أو بتطبخي. كلمي نفسك. الطريقة دي بتشتغل فعلاً.</div>
+        </div>
+    </div>
+
+    <!-- Day 12 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">١٢</div>
+            <div class="day-title"><h3>نهاية الصوتيات</h3><div class="day-subtitle">آخر فيديو صوتيات. بعد كده، أدوات النطق بتاعتك كملت.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=CVRtUUj9CYU" target="_blank">
+                <span class="course-tag phonetics">الصوتيات</span>
+                <span class="video-title">حل مشكلة التهجي والنطق (الحلقة ٤ — الأخيرة! 🎉)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=VLayMoaGcxc" target="_blank">
+                <span class="course-tag conversation">المحادثة</span>
+                <span class="video-title">المحادثات اليومية (الحلقة ٥)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=wGMovW924lQ" target="_blank">
+                <span class="course-tag western">الغرب</span>
+                <span class="video-title">Learn with pictures 3</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">🎉</span>
+            <div class="action-text"><strong>الصوتيات المستوى التاني خلصت!</strong> اقرأي فقرة بالإنجليزي بصوت عالي وركزي على كل صوت.</div>
+        </div>
+    </div>
+
+    <!-- Day 13 -->
+    <div class="day-card">
+        <div class="day-header">
+            <div class="day-number">١٣</div>
+            <div class="day-title"><h3>محادثات + قوة المفردات</h3><div class="day-subtitle">هنا الدنيا بتبدأ تتظبط.</div></div>
+        </div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=KLxxVjAK1r4" target="_blank">
+                <span class="course-tag think">التفكير</span>
+                <span class="video-title">أهم الكلمات والمصطلحات (الحلقة ٦)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=qDoMjhP1OAk" target="_blank">
+                <span class="course-tag conversation">المحادثة</span>
+                <span class="video-title">المحادثات اليومية (الحلقة ٦)</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=F8SQrON82WY" target="_blank">
+                <span class="course-tag western">الغرب</span>
+                <span class="video-title">Learn with pictures 4</span>
+                <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            </a>
+        </div>
+        <div class="action-item">
+            <span class="action-icon">🏠</span>
+            <div class="action-text"><strong>المطلوب منك:</strong> وصفي أوضتك بالإنجليزي. استخدمي ١٠ جمل على الأقل. ممنوع عربي خالص.</div>
+        </div>
+    </div>
+
+    <!-- Day 14 - Review -->
+    <div class="day-card review-day">
+        <div class="day-header">
+            <div class="day-number">١٤</div>
+            <div class="day-title"><h3>راحة، مراجعة، شحن طاقة</h3></div>
+        </div>
+        <ul class="checklist">
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>دوولينجو: ركزي على تمارين "Speaking"</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>تمرني على أصعب الأصوات من الصوتيات</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>شوفي: <a href="https://www.youtube.com/watch?v=cARScujmsuU" target="_blank">تعلم الإنجليزية أثناء النوم؟ بين الحقيقة والخيال</a></li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>قلبي في كشكول المفردات — كام كلمة عندك دلوقتي؟</li>
+        </ul>
+    </div>
+
+    <div class="week-summary">
+        <h4>الأسبوع التاني خلص! 🔥</h4>
+        <div class="progress-tags">
+            <span class="progress-tag done">القواعد ✓</span>
+            <span class="progress-tag done">الصوتيات ٥/٥ ✓</span>
+            <span class="progress-tag in-progress">المحادثة ٦/٩</span>
+            <span class="progress-tag in-progress">الغرب ٦/١١</span>
+            <span class="progress-tag in-progress">التفكير ٧/٩</span>
+        </div>
+    </div>
+
+    <!-- ==================== WEEK 3 ==================== -->
+    <div class="section-header">
+        <div class="week-badge">الأسبوع التالت</div>
+        <h2>القصص بتغير كل حاجة</h2>
+        <p class="section-quote">"الأسبوع ده هتبطلي تذاكري إنجليزي وتبدأي تعيشي فيه. هنا السحر بيحصل."</p>
+    </div>
+
+    <!-- Days 15-21 abbreviated for file size but same pattern -->
+    <!-- Day 15 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">١٥</div><div class="day-title"><h3>ادخلي عالم القصص</h3><div class="day-subtitle">مخك بيفتكر القصص ١٠ أضعاف أحسن من القواعد.</div></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=82IHAg6L4UE" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">ذا أمريكان ستوري - المقدمة</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=69o6sq9WdMs" target="_blank"><span class="course-tag listening">الاستماع</span><span class="video-title">مقدمة - تطوير مهارة الاستماع</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=rqXA-KM_-Dc" target="_blank"><span class="course-tag western">الغرب</span><span class="video-title">الحلقة ٥</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">🔮</span><div class="action-text"><strong>المطلوب منك:</strong> حاولي تتوقعي القصة الأولى هتبقى عن إيه. اكتبي توقعك بالإنجليزي.</div></div>
+    </div>
+
+    <!-- Day 16 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">١٦</div><div class="day-title"><h3>أول قصة ليكي</h3><div class="day-subtitle">ركزي إزاي الجمل بتتبني في القصة. ادرسي اللغة.</div></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=qCCWnqfQ_UM" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">ذا أمريكان ستوري ١ - Zero</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=LjR4DRb_QSg" target="_blank"><span class="course-tag listening">الاستماع</span><span class="video-title">تطوير مهارة الاستماع (الحلقة ١)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=zghKRHesS0E" target="_blank"><span class="course-tag conversation">المحادثة</span><span class="video-title">المحادثات اليومية (الحلقة ٧)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">📖</span><div class="action-text"><strong>المطلوب منك:</strong> لخصي القصة في ٣-٤ جمل إنجليزي من ذاكرتك. متشوفيش الفيديو تاني.</div></div>
+    </div>
+
+    <!-- Day 17 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">١٧</div><div class="day-title"><h3>يوم القصتين</h3><div class="day-subtitle">سيبي نفسك تندمجي في الإنجليزي. بطلي تترجمي في دماغك.</div></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=h5vAeSKgq58" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">ذا أمريكان ستوري ١ - Hero</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=W2b_8t_Yn5g" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">ذا أمريكان ستوري ١ - Homework</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=3ZzikaLHtes" target="_blank"><span class="course-tag western">الغرب</span><span class="video-title">الحلقة ٦</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">👀</span><div class="action-text"><strong>المطلوب منك:</strong> شوفي حلقة الـ Hero تاني — من غير ترجمة. فهمتي قد إيه؟</div></div>
+    </div>
+
+    <!-- Day 18 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">١٨</div><div class="day-title"><h3>قصة جديدة، مهارات جديدة</h3></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=19jzTcwma7w" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">ذا أمريكان ستوري ٢ - Zero</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=AbIU37b8OoI" target="_blank"><span class="course-tag listening">الاستماع</span><span class="video-title">تطوير مهارة الاستماع (الحلقة ٢)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=lEDGw6dwH2Q" target="_blank"><span class="course-tag conversation">المحادثة</span><span class="video-title">محادثات المواقف اليومية (الحلقة ٨)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">🎵</span><div class="action-text"><strong>المطلوب منك:</strong> اسمعي أغنية إنجليزي الليلة. حاولي تمسكي ٥ كلمات تعرفيهم.</div></div>
+    </div>
+
+    <!-- Day 19 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">١٩</div><div class="day-title"><h3>فكري بالإنجليزي</h3><div class="day-subtitle">تحدي: باقي اليوم كله، فكري بالإنجليزي بس. كل فكرة.</div></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=NcASecfaZNs" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">ذا أمريكان ستوري ٢ - Hero</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=rZu5Zui_eks" target="_blank"><span class="course-tag think">التفكير</span><span class="video-title">أهم الكلمات والمصطلحات (الحلقة ٧)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=9j3G0meQwvU" target="_blank"><span class="course-tag western">الغرب</span><span class="video-title">الحلقة ٧</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">🌙</span><div class="action-text"><strong>المطلوب منك:</strong> قبل ما تنامي، وصفي يومك كله — في دماغك، بالإنجليزي. أكلتي إيه؟ رحتي فين؟ حسيتي بإيه؟</div></div>
+    </div>
+
+    <!-- Day 20 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">٢٠</div><div class="day-title"><h3>نهاية المحادثة</h3><div class="day-subtitle">قصتين وآخر حلقة محادثة. يوم كبير.</div></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=QJfGpXJZl80" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">ذا أمريكان ستوري ٣ - Zero</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=oIlOVa0dtBg" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">ذا أمريكان ستوري ٣ - Hero</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=K2H-jNm3wUc" target="_blank"><span class="course-tag conversation">المحادثة</span><span class="video-title">محادثات المواقف اليومية (الحلقة ٩ — الأخيرة! 🎉)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">🎉</span><div class="action-text"><strong>المحادثة خلصت!</strong> لاقي حد واتكلمي معاه إنجليزي — حتى لو بس "Hi, how are you? I'm learning English."</div></div>
+    </div>
+
+    <!-- Day 21 - Review -->
+    <div class="day-card review-day">
+        <div class="day-header"><div class="day-number">٢١</div><div class="day-title"><h3>راحة، مراجعة، شحن طاقة</h3></div></div>
+        <ul class="checklist">
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>دوولينجو: ٢ دروس زيادة + كل القصص المتاحة</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>شوفي حلقة قصة من غير ترجمة خالص</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>شوفي: <a href="https://www.youtube.com/watch?v=QSSHQTKD0kc" target="_blank">فهم الفرق بين الأزمنة</a></li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>عدي كلمات كشكول المفردات. المفروض يكون عندك ٥٠+ كلمة.</li>
+        </ul>
+    </div>
+
+    <div class="week-summary">
+        <h4>الأسبوع التالت خلص! 🔥</h4>
+        <div class="progress-tags">
+            <span class="progress-tag done">القواعد ✓</span>
+            <span class="progress-tag done">الصوتيات ✓</span>
+            <span class="progress-tag done">المحادثة ٩/٩ ✓</span>
+            <span class="progress-tag in-progress">القصص ٨/١٢</span>
+            <span class="progress-tag in-progress">الاستماع ٣/٥</span>
+            <span class="progress-tag in-progress">الغرب ٩/١١</span>
+            <span class="progress-tag in-progress">التفكير ٨/٩</span>
+        </div>
+    </div>
+
+    <!-- ==================== WEEK 4 ==================== -->
+    <div class="section-header">
+        <div class="week-badge">الأسبوع الرابع</div>
+        <h2>الدفعة الأخيرة</h2>
+        <p class="section-quote">"هنا الكويس بيبقى ممتاز. خلصي اللي بدأتيه."</p>
+    </div>
+
+    <!-- Day 22 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">٢٢</div><div class="day-title"><h3>الأخبار بتبدأ</h3><div class="day-subtitle">أخبار إنجليزي حقيقية. أصعب من القصص — وعشان كده مهم.</div></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=yqUazPGKk6k" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">ذا أمريكان ستوري ٤ - Zero</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=FQY77zxXL9s" target="_blank"><span class="course-tag news">الأخبار</span><span class="video-title">نشرة أخبار إنجليزية (الحلقة ١)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=c0zjtfqdFJI" target="_blank"><span class="course-tag western">الغرب</span><span class="video-title">الحلقة ٨</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">📺</span><div class="action-text"><strong>المطلوب منك:</strong> بعد فيديو الأخبار، حاولي تشرحي الخبر لصاحب خيالي — بالإنجليزي.</div></div>
+    </div>
+
+    <!-- Day 23 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">٢٣</div><div class="day-title"><h3>قصص + أخبار + استماع</h3><div class="day-subtitle">بتشغلي كل عضلات الإنجليزي مع بعض.</div></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=I66IemcRWi0" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">Tell me a story 1 - قصص متحركة</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=2wBrClOCyME" target="_blank"><span class="course-tag news">الأخبار</span><span class="video-title">الزواج في الصين (الحلقة ٣)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=2pzMTl77zB0" target="_blank"><span class="course-tag listening">الاستماع</span><span class="video-title">تحسين الاستماع (الحلقة ٣)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">📊</span><div class="action-text"><strong>المطلوب منك:</strong> شوفي القصة المتحركة من غير ما توقفي. فهمتي قد إيه؟ اكتبي النسبة. هدفك: ٨٠٪+</div></div>
+    </div>
+
+    <!-- Day 24 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">٢٤</div><div class="day-title"><h3>قربتي</h3><div class="day-subtitle">٣ أيام محتوى كمان. إنتي شايفة خط النهاية.</div></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=Grq_1UslQW0" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">Tell me a story 2</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=TrJLqaXbvDA" target="_blank"><span class="course-tag news">الأخبار</span><span class="video-title">حوت يبتلع غواص (الحلقة ٤)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=KOpB1fYL8A8" target="_blank"><span class="course-tag western">الغرب</span><span class="video-title">الحلقة ٩ (الأخيرة! 🎉)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">🎉</span><div class="action-text"><strong>تعلم كما يتعلمها الغرب خلص!</strong> اكتبي ٣ حاجات اتعلمتيهم من الكورس ده غيروا طريقة مذاكرتك.</div></div>
+    </div>
+
+    <!-- Day 25 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">٢٥</div><div class="day-title"><h3>خط النهاية ظهر</h3></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=r2qrEF2fcJU" target="_blank"><span class="course-tag stories">قصص</span><span class="video-title">Tell me a story 3 (الأخيرة! 🎉)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=xO1j03zSnd4" target="_blank"><span class="course-tag news">الأخبار</span><span class="video-title">ناطحة سحاب لا ترى بالعين (الحلقة ٥)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=RrAOzvDMGbA" target="_blank"><span class="course-tag listening">الاستماع</span><span class="video-title">تحسين الاستماع (الحلقة ٤)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">✍️</span><div class="action-text"><strong>القصص والاستماع خلصوا!</strong> اكتبي فقرة كاملة عن أحب قصة ليكي من الكورس. ممنوع عربي.</div></div>
+    </div>
+
+    <!-- Day 26 -->
+    <div class="day-card final-day">
+        <div class="day-header"><div class="day-number">٢٦</div><div class="day-title"><h3>آخر الفيديوهات</h3><div class="day-subtitle">آخر فيديوهين في كورسات المستوى التاني. استمتعي بيهم.</div></div></div>
+        <div class="video-list">
+            <a class="video-item" href="https://www.youtube.com/watch?v=Vx6HNSuHqB0" target="_blank"><span class="course-tag news">الأخبار</span><span class="video-title">سرقة كوبري قطار في روسيا (الأخيرة! 🎉)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+            <a class="video-item" href="https://www.youtube.com/watch?v=MKN4FtGcFnY" target="_blank"><span class="course-tag think">التفكير</span><span class="video-title">الحلقة الأخيرة (الأخيرة! 🎉)</span><span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+        </div>
+        <div class="action-item"><span class="action-icon">⭐</span><div class="action-text"><strong>كل الـ ٦٣ فيديو خلصوا!</strong> خدي لحظة تفتخري بنفسك. وبعدين كملي.</div></div>
+    </div>
+
+    <!-- Day 27 -->
+    <div class="day-card">
+        <div class="day-header"><div class="day-number">٢٧</div><div class="day-title"><h3>يوم خفيف</h3><div class="day-subtitle">مفيش فيديوهات جديدة. ارجعي لأي حاجة كانت صعبة.</div></div></div>
+        <ul class="checklist">
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>دوولينجو: درس الصبح + مراجعة بالليل</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>شوفي تاني ١-٢ فيديو حسيتي إنهم صعبين</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>شوفي: <a href="https://www.youtube.com/watch?v=joIVkQvz6ug" target="_blank">الفرق بين اللهجة الأمريكية والبريطانية</a></li>
+        </ul>
+    </div>
+
+    <!-- Day 28 - Review -->
+    <div class="day-card review-day">
+        <div class="day-header"><div class="day-number">٢٨</div><div class="day-title"><h3>يوم المراجعة الأخير</h3></div></div>
+        <ul class="checklist">
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>دوولينجو: ركزي كلها على تمارين "Listening"</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>شوفي أي حلقة أخبار من غير ما توقفي</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>شوفي: <a href="https://www.youtube.com/watch?v=fCkL-lGTayo" target="_blank">أفضل طريقة لحفظ الكلمات</a></li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>راجعي كشكول المفردات كله من اليوم الأول لحد النهارده</li>
+        </ul>
+    </div>
+
+    <div class="week-summary">
+        <h4>الأسبوع الرابع خلص! كل حاجة خلصت! 🏆</h4>
+        <div class="progress-tags">
+            <span class="progress-tag done">القواعد ✓</span>
+            <span class="progress-tag done">الصوتيات ✓</span>
+            <span class="progress-tag done">التفكير ✓</span>
+            <span class="progress-tag done">المحادثة ✓</span>
+            <span class="progress-tag done">الاستماع ✓</span>
+            <span class="progress-tag done">القصص ✓</span>
+            <span class="progress-tag done">الأخبار ✓</span>
+            <span class="progress-tag done">الغرب ✓</span>
+        </div>
+    </div>
+
+    <!-- ==================== DAYS 29-30 ==================== -->
+    <div class="section-header">
+        <div class="week-badge" style="background:var(--gradient-3);">الأيام الأخيرة</div>
+        <h2>اثبتي لنفسك</h2>
+    </div>
+
+    <!-- Day 29 -->
+    <div class="day-card final-day">
+        <div class="day-header"><div class="day-number">٢٩</div><div class="day-title"><h3>الاختبار</h3><div class="day-subtitle">مفيش فيديوهات. النهارده بتمتحني نفسك.</div></div></div>
+        <ul class="checklist">
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span><strong>دوولينجو:</strong> جلسة ٣٠ دقيقة. حطمي أعلى سكور بتاعك.</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span><strong>اختبار كتابة:</strong> اكتبي صفحة كاملة عن نفسك بالإنجليزي. من غير قاموس. من غير جوجل ترجمة.</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span><strong>اختبار استماع:</strong> شوفي <a href="https://www.youtube.com/watch?v=d4a3T4dDpSw" target="_blank">كيف أفكر بالإنجليزي</a> من غير ترجمة. فاهمة قد إيه دلوقتي؟</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span><strong>اختبار كلام:</strong> سجلي نفسك ٢ دقيقة عن أي موضوع. اسمعي التسجيل. هتتصدمي.</li>
+        </ul>
+    </div>
+
+    <!-- Day 30 -->
+    <div class="day-card final-day">
+        <div class="day-header"><div class="day-number">٣٠</div><div class="day-title"><h3>البداية</h3><div class="day-subtitle">أيوه، اليوم ٣٠ ده بداية. لإن رحلتك في الإنجليزي لسه مخلصتش.</div></div></div>
+        <ul class="checklist">
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span><strong>دوولينجو:</strong> خلصي كل الدروس المتبقية. احتفلي بالـ streak بتاع الـ ٣٠ يوم.</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span>شوفي: <a href="https://www.youtube.com/watch?v=cdNhvCKASp8" target="_blank">أفضل طريقة للمذاكرة</a></li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span><strong>اكتبي جواب</strong> لنفسك، بالإنجليزي. قولي لنفسك إيه اللي حققتيه في ٣٠ يوم. احتفظي بيه.</li>
+            <li><span class="check-box" onclick="this.classList.toggle('checked')"></span><strong>قرري:</strong> هتكملي المستوى التالت؟ (الإجابة المفروض تكون أيوه.)</li>
+        </ul>
+    </div>
+
+    <!-- ==================== SCORECARD ==================== -->
+    <div class="scorecard">
+        <h2 style="text-align:center; margin-bottom:0.5rem;">النتيجة النهائية</h2>
+        <p style="text-align:center; color:var(--text-muted);">٦٣ فيديو من ٦٣ — ١٠٠٪</p>
+        <div class="scorecard-grid">
+            <div class="scorecard-row"><span class="course-name">القواعد المستوى التاني</span><div class="score"><span class="score-num">٧/٧</span><div class="score-bar"><div class="score-bar-fill"></div></div></div></div>
+            <div class="scorecard-row"><span class="course-name">الصوتيات المستوى التاني</span><div class="score"><span class="score-num">٥/٥</span><div class="score-bar"><div class="score-bar-fill"></div></div></div></div>
+            <div class="scorecard-row"><span class="course-name">التفكير بالإنجليزية</span><div class="score"><span class="score-num">٩/٩</span><div class="score-bar"><div class="score-bar-fill"></div></div></div></div>
+            <div class="scorecard-row"><span class="course-name">المحادثة المستوى التاني</span><div class="score"><span class="score-num">٩/٩</span><div class="score-bar"><div class="score-bar-fill"></div></div></div></div>
+            <div class="scorecard-row"><span class="course-name">الاستماع المستوى التاني</span><div class="score"><span class="score-num">٥/٥</span><div class="score-bar"><div class="score-bar-fill"></div></div></div></div>
+            <div class="scorecard-row"><span class="course-name">القصص</span><div class="score"><span class="score-num">١٢/١٢</span><div class="score-bar"><div class="score-bar-fill"></div></div></div></div>
+            <div class="scorecard-row"><span class="course-name">الأخبار</span><div class="score"><span class="score-num">٥/٥</span><div class="score-bar"><div class="score-bar-fill"></div></div></div></div>
+            <div class="scorecard-row"><span class="course-name">تعلم كما يتعلمها الغرب</span><div class="score"><span class="score-num">١١/١١</span><div class="score-bar"><div class="score-bar-fill"></div></div></div></div>
+        </div>
+        <div class="scorecard-total">
+            <span class="total-label">الإجمالي</span>
+            <span class="total-num">٦٣/٦٣</span>
+        </div>
+    </div>
+
+    <!-- ==================== NEXT STEPS ==================== -->
+    <div class="next-steps">
+        <h2 style="text-align:center; margin-bottom:0.5rem;">إيه اللي بعد كده؟</h2>
+        <p style="text-align:center; color:var(--text-muted); margin-bottom:2rem;">المستوى التالت مستنيكي</p>
+        <div class="next-grid">
+            <a class="next-card" href="https://www.youtube.com/playlist?list=PLp22-4PivYmJSejQkuui_SrYWObQW7pWt" target="_blank">
+                <div class="next-icon">📐</div>
+                <h4>القواعد المستوى التالت</h4>
+            </a>
+            <a class="next-card" href="https://www.youtube.com/playlist?list=PLp22-4PivYmKw-mErNjoEWnyic9U7k_NM" target="_blank">
+                <div class="next-icon">📚</div>
+                <h4>القصص المستوى التالت</h4>
+            </a>
+            <a class="next-card" href="https://www.youtube.com/playlist?list=PLp22-4PivYmKzTfbSx_nm0oCFSQ9-IpgL" target="_blank">
+                <div class="next-icon">📖</div>
+                <h4>القراءة المستوى الرابع</h4>
+            </a>
+            <a class="next-card" href="https://www.youtube.com/playlist?list=PLp22-4PivYmL2wmHCHXvbbZWcQaTXIBTV" target="_blank">
+                <div class="next-icon">🎓</div>
+                <h4>كورس الآيلتس</h4>
+            </a>
+        </div>
+
+        <h3 style="text-align:center; margin:3rem 0 1rem;">الجدول الزمني</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content"><h4>B1 — متوسط</h4><p>٢-٣ شهور من دلوقتي | المستوى التالت + تمرين يومي</p></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content"><h4>B2 — فوق المتوسط</h4><p>٦-٨ شهور | اندماج + شركاء محادثة</p></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content"><h4>C1 — متقدم / آيلتس ٧+</h4><p>١٢-١٨ شهر | استخدام إنجليزي حقيقي كل يوم</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== CLOSING ==================== -->
+    <div class="closing">
+        <h2>كلمة أخيرة</h2>
+        <p>من ٣٠ يوم بدأتي الصفحة دي ومكنتيش عارفة يعني إيه "gerund." دلوقتي شوفتي ٦٣ فيديو، بنيتي streak دوولينجو ٣٠ يوم، اتعلمتي تفكري بالإنجليزي، وعملتي محادثات كنتي متخيلتيش إنك تعمليها.</p>
+        <p>أصعب جزء كان اليوم الأول. وإنتي عديتيه خلاص.</p>
+        <p>كل حاجة من هنا ولقدام زخم.</p>
+        <div class="cta">كملي. 💪</div>
+    </div>
+</div>
+
+<footer>
+    <p>الخطة مبنية من <a href="https://www.youtube.com/@ZAmericanEnglish" target="_blank">ZAmericanEnglish</a> بواسطة إبراهيم عادل — أكبر قناة تعليم إنجليزي في العالم</p>
+    <div class="app-buttons">
+        <a class="app-btn" href="https://play.google.com/store/apps/details?id=com.zamericanenglish" target="_blank">أندرويد</a>
+        <a class="app-btn" href="https://apps.apple.com/us/app/zamerican-%D8%AA%D8%B9%D9%84%D9%85-%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9/id1459606409" target="_blank">آيفون</a>
+    </div>
+</footer>
+
+</body>
+</html>
